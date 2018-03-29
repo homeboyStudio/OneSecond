@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OSCalendarHeaderCell" rowHeight="88" id="Djg-TN-Fxp" customClass="OSCalendarHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Djg-TN-Fxp" id="3kd-1H-iIt">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jO-N4-NXN" customClass="THLabel">
+                        <rect key="frame" x="15" y="32" width="290" height="40.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40.5" id="v1h-sO-bwZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2jO-N4-NXN" secondAttribute="trailing" constant="15" id="pxm-V1-TKj"/>
+                    <constraint firstItem="2jO-N4-NXN" firstAttribute="leading" secondItem="3kd-1H-iIt" secondAttribute="leading" constant="15" id="q51-XZ-gcb"/>
+                    <constraint firstAttribute="bottom" secondItem="2jO-N4-NXN" secondAttribute="bottom" constant="15" id="ugO-dR-sOT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="dateLabel" destination="2jO-N4-NXN" id="f1J-T0-nK1"/>
+            </connections>
+            <point key="canvasLocation" x="304" y="85"/>
+        </tableViewCell>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OSCalendarDateCell" rowHeight="325" id="ueB-a4-d8j" customClass="OSCalendarDateCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="325"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueB-a4-d8j" id="qzd-ll-9eT">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="324.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzg-AX-8Ug" customClass="JTHorizontalCalendarView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDy-tr-lvD">
+                        <rect key="frame" x="261" y="260" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="rb8-sG-gLz"/>
+                            <constraint firstAttribute="height" constant="44" id="u2K-Uu-6x2"/>
+                        </constraints>
+                        <state key="normal" image="btn_today.png"/>
+                        <connections>
+                            <action selector="backTodayButtonAction:" destination="ueB-a4-d8j" eventType="touchUpInside" id="FSd-RQ-hFk"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guE-xs-b2Y">
+                        <rect key="frame" x="138" y="260" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="Kg0-fb-r1n"/>
+                            <constraint firstAttribute="height" constant="44" id="Zue-zx-PUY"/>
+                        </constraints>
+                        <state key="normal" image="btn_clip.png"/>
+                        <connections>
+                            <action selector="playButtonAction:" destination="ueB-a4-d8j" eventType="touchUpInside" id="sNc-0s-UGw"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgv-M4-T1O">
+                        <rect key="frame" x="15" y="260" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="6iv-Il-W8S"/>
+                            <constraint firstAttribute="width" constant="44" id="iGc-Ad-F1d"/>
+                        </constraints>
+                        <state key="normal" image="btn_home_gary.png"/>
+                        <connections>
+                            <action selector="homeButtonAction:" destination="ueB-a4-d8j" eventType="touchUpInside" id="KSh-eS-aqb"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyQ-Ca-vj3">
+                        <rect key="frame" x="2" y="304" width="70" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="0IX-3Z-Ee0"/>
+                            <constraint firstAttribute="width" constant="70" id="10U-8x-dfX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精彩故事" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0f-XA-QIZ">
+                        <rect key="frame" x="105" y="304" width="111" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="111" id="aYA-Gd-wiy"/>
+                            <constraint firstAttribute="height" constant="21" id="fTJ-L9-Fq6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqw-zZ-b8h">
+                        <rect key="frame" x="248" y="304" width="70" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="Hef-Qc-56d"/>
+                            <constraint firstAttribute="height" constant="21" id="hsa-7a-Y7e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="mDy-tr-lvD" secondAttribute="trailing" constant="15" id="91f-bd-Odi"/>
+                    <constraint firstAttribute="bottom" secondItem="Vzg-AX-8Ug" secondAttribute="bottom" constant="64.5" id="K2y-2q-3tC"/>
+                    <constraint firstAttribute="bottom" secondItem="bgv-M4-T1O" secondAttribute="bottom" constant="20.5" id="KCi-LA-47E"/>
+                    <constraint firstItem="guE-xs-b2Y" firstAttribute="centerX" secondItem="qzd-ll-9eT" secondAttribute="centerX" id="P7O-ea-z4e"/>
+                    <constraint firstAttribute="trailing" secondItem="Vzg-AX-8Ug" secondAttribute="trailing" id="SCt-RT-kol"/>
+                    <constraint firstAttribute="bottom" secondItem="mDy-tr-lvD" secondAttribute="bottom" constant="20.5" id="U0a-v4-iev"/>
+                    <constraint firstItem="o0f-XA-QIZ" firstAttribute="centerX" secondItem="guE-xs-b2Y" secondAttribute="centerX" id="U3A-yo-TPs"/>
+                    <constraint firstItem="Vzg-AX-8Ug" firstAttribute="leading" secondItem="qzd-ll-9eT" secondAttribute="leading" id="Ue3-2K-EIB"/>
+                    <constraint firstAttribute="bottom" secondItem="guE-xs-b2Y" secondAttribute="bottom" constant="20.5" id="bia-Mt-TuN"/>
+                    <constraint firstItem="IyQ-Ca-vj3" firstAttribute="top" secondItem="bgv-M4-T1O" secondAttribute="bottom" id="ext-JT-GSW"/>
+                    <constraint firstItem="qqw-zZ-b8h" firstAttribute="centerX" secondItem="mDy-tr-lvD" secondAttribute="centerX" id="fee-hD-0s9"/>
+                    <constraint firstItem="Vzg-AX-8Ug" firstAttribute="top" secondItem="qzd-ll-9eT" secondAttribute="top" id="n62-xS-96x"/>
+                    <constraint firstItem="bgv-M4-T1O" firstAttribute="leading" secondItem="qzd-ll-9eT" secondAttribute="leading" constant="15" id="rLs-Oz-Q07"/>
+                    <constraint firstItem="o0f-XA-QIZ" firstAttribute="top" secondItem="guE-xs-b2Y" secondAttribute="bottom" id="ruS-7K-X6D"/>
+                    <constraint firstItem="qqw-zZ-b8h" firstAttribute="top" secondItem="mDy-tr-lvD" secondAttribute="bottom" id="vj3-Rt-LHO"/>
+                    <constraint firstItem="IyQ-Ca-vj3" firstAttribute="centerX" secondItem="bgv-M4-T1O" secondAttribute="centerX" id="wY1-bo-nfU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="backButton" destination="mDy-tr-lvD" id="C5H-xi-uNV"/>
+                <outlet property="backLabel" destination="qqw-zZ-b8h" id="0fV-RL-hCH"/>
+                <outlet property="calendarContentView" destination="Vzg-AX-8Ug" id="Ixd-bv-OOe"/>
+                <outlet property="homeButton" destination="bgv-M4-T1O" id="l5H-bn-W4O"/>
+                <outlet property="homeLabel" destination="IyQ-Ca-vj3" id="898-vW-reu"/>
+                <outlet property="playButton" destination="guE-xs-b2Y" id="1m6-Oq-A61"/>
+                <outlet property="playLabel" destination="o0f-XA-QIZ" id="qVQ-AM-Nsh"/>
+            </connections>
+            <point key="canvasLocation" x="304" y="339.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_clip.png" width="44" height="44"/>
+        <image name="btn_home_gary.png" width="44" height="44"/>
+        <image name="btn_today.png" width="44" height="44"/>
+    </resources>
+</document>

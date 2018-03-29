@@ -1,0 +1,1 @@
+../../../SCRecorder/Library/Sources/SCFilter+UIImage.h

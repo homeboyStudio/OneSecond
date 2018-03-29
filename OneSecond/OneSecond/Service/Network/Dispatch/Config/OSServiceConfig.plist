@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>user</key>
+	<dict>
+		<key>host</key>
+		<string>http://nichijou.in/LastDay/</string>
+		<key>hostType</key>
+		<string>1</string>
+		<key>bean</key>
+		<string>OSUserBean</string>
+		<key>handler</key>
+		<string>OSUserServiceHandler</string>
+		<key>api</key>
+		<dict>
+			<key>NextDay</key>
+			<dict>
+				<key>method</key>
+				<string>get</string>
+				<key>input</key>
+				<string></string>
+				<key>output</key>
+				<string>OSResponseModel</string>
+				<key>url</key>
+				<string>2015/10/01.json</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

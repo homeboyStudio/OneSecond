@@ -1,0 +1,35 @@
+//
+//  OSPrefixHeader.pch
+//  OneSecond
+//
+//  Created by JHR on 15/10/17.
+//  Copyright © 2015年 com.homeboy. All rights reserved.
+//
+
+#ifndef OSPrefixHeader_pch
+#define OSPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+   #import <UIKit/UIKit.h>
+   #import <Foundation/Foundation.h>
+
+   #import "OSUIConfig.h"
+   #import "OSColor.h"
+   #import "OSFont.h"
+   #import "OSDevice.h"
+   #import "OSDataSource.h"
+   #import "OSTableView.h"
+   #import "OSFileUtil.h"
+   #import "DBDateUtils.h"
+   #import "GPUImage.h"
+   #import "MBProgressHUD.h"
+   #import "AMTumblrHud.h"
+   #import "OSLogger.h"
+
+#endif
+
+#endif /* OSPrefixHeader_pch */
