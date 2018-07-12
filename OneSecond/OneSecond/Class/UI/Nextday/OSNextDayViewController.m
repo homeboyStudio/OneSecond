@@ -92,7 +92,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     _imageManager = [SDWebImageManager sharedManager];
     
     [self setupUI];
@@ -151,7 +150,8 @@
 {
     self.isAllWidgetHidden = NO;
     
-    [self.osNavigationController setNavigationBarBackgroundAlpha:0.0f];
+    //[self.osNavigationController setNavigationBarHidden:YES];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     
@@ -243,11 +243,11 @@
     }else {
         imageUrlString = _nextDayModel.imagesModel.big568h3x;
     }
-    
+
     [_imageManager downloadImageWithURL:[NSURL URLWithString:imageUrlString] options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        
+
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-      
+
         [_nextDayIamgeView setAlpha:0.0f];
         [UIView transitionWithView:_nextDayIamgeView duration:animationDuration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             [_nextDayIamgeView setImage:image];
@@ -437,7 +437,6 @@
 - (void)getNextDayService
 {
     self.userBean.dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE14];
-    
     OSNetwork *network = [[OSNetwork alloc] init];
     
     __weak typeof(self) weakSelf = self;
