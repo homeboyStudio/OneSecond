@@ -264,9 +264,11 @@
 
     ZLSwipeableViewDirection direction = ZLSwipeableViewDirectionFromVector(directionVector);
 
+    __weak typeof(self) weakSelf = self;
     NSPredicate *outOfBoundViews =
         [NSPredicate predicateWithBlock:^BOOL(UIView *view, NSDictionary *bindings) {
-          return !CGRectIntersectsRect([_containerView convertRect:view.frame toView:nil],
+            __strong typeof(self) strongSelf = weakSelf;
+          return !CGRectIntersectsRect([strongSelf.containerView convertRect:view.frame toView:nil],
                                        [UIScreen mainScreen].bounds);
         }];
     [self scheduleToBeRemoved:view withPredicate:outOfBoundViews];

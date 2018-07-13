@@ -70,12 +70,12 @@
     [_titleLabel setAlpha:0.0f];
     [_detailLabel setAlpha:0.0f];
     [UIView animateWithDuration:.8f animations:^{
-        [_helloLabel setAlpha:1.0];
+        [self.helloLabel setAlpha:1.0];
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:.5f animations:^{
-            [_titleLabel setAlpha:1.0f];
-            [_detailLabel setAlpha:1.0f];
+            [self.titleLabel setAlpha:1.0f];
+            [self.detailLabel setAlpha:1.0f];
         } completion:^(BOOL finished) {
             
         }];

@@ -133,7 +133,7 @@
     NSInteger month = [[dateString substringWithRange:NSMakeRange(4, 2)] integerValue];
     NSString *monthString = [self.monthArray objectAtIndex:(month - 1)];
     
-    NSDateComponents *componets = [[NSCalendar autoupdatingCurrentCalendar] components:NSWeekdayCalendarUnit fromDate:date];
+    NSDateComponents *componets = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitWeekday fromDate:date];
     NSInteger weekDay = [componets weekday];
     NSString *weekDayString = [self.weekdayArray objectAtIndex:(weekDay - 1)];
     

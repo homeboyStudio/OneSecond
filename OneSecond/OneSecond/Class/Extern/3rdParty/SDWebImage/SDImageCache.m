@@ -123,7 +123,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
         _shouldDisableiCloud = YES;
 
         dispatch_sync(_ioQueue, ^{
-            _fileManager = [NSFileManager new];
+            self->_fileManager = [NSFileManager new];
         });
 
 #if TARGET_OS_IPHONE

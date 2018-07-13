@@ -230,12 +230,12 @@ LGSideMenuPresentationStyle;
 - (void)leftViewWillLayoutSubviewsWithSize:(CGSize)size;
 - (void)rightViewWillLayoutSubviewsWithSize:(CGSize)size;
 
-- (void)showLeftViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
-- (void)hideLeftViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
-- (void)showHideLeftViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
+- (void)showLeftViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
+- (void)hideLeftViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
+- (void)showHideLeftViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
 
-- (void)showRightViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
-- (void)hideRightViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
-- (void)showHideRightViewAnimated:(BOOL)animated completionHandler:(void(^)())completionHandler;
+- (void)showRightViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
+- (void)hideRightViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
+- (void)showHideRightViewAnimated:(BOOL)animated completionHandler:(void(^)(void))completionHandler;
 
 @end

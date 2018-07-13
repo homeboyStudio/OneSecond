@@ -12,8 +12,8 @@
 @class  OSDataSource;
 extern  OSDataSource *__dataSource;
 
-void initDataSource();
-void freeDataSource();
+void initDataSource(void);
+void freeDataSource(void);
 
 @interface OSDataSource : NSObject
 

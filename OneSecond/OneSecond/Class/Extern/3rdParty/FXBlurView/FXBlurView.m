@@ -678,7 +678,7 @@
     self.layer.contentsScale = image.scale;
 }
 
-- (void)updateAsynchronously:(BOOL)async completion:(void (^)())completion
+- (void)updateAsynchronously:(BOOL)async completion:(void (^)(void))completion
 {
     if ([self shouldUpdate])
     {
