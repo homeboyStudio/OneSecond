@@ -99,6 +99,18 @@
     return nowLocalDate;
 }
 
++ (NSDate *)getNextDateSince:(NSDate *)date
+{
+    NSDate *nextLocalDate = [NSDate dateWithTimeInterval:24 * 60 *60 sinceDate:date];
+    return nextLocalDate;
+}
+
++ (NSDate *)getPrevDateSince:(NSDate *)date
+{
+    NSDate *prevLocalDate = [NSDate dateWithTimeInterval:-24 * 60 * 60 sinceDate:date];
+    return prevLocalDate;
+}
+
 #pragma mark - ----------获取当前日期信息----------
 
 + (NSString *)getCurrentLogTime
@@ -192,7 +204,7 @@
 }
 
 #pragma mark 根据 SimpleDateFormatType类型将calendar转成对应的格式 如果date为null则返回空字符串
-+ (NSString *)getStringDate:(NSDate *)date formatType:(SIMPLEFORMATTYPE)SimpleDateFormatType
++ (NSString *)getStringDate:(NSDate *)date formatType:(SIMPLEFORMATTYPE)SimpleDateFormatType 
 {
     NSString *str = @"";
     NSString *type = @"";

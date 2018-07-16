@@ -61,6 +61,10 @@
 @property (nonatomic, strong) OSNextDayModel *nextDayModel;
 @property (nonatomic, strong) OSNextDayViewModel *nextDayViewModel;   // ViewModel
 
+@property (nonatomic, strong) NSString *dateString;
+@property (nonatomic, strong) NSDate *date;
+
+
 // 约束
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textLabelRightLayout;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textLabelheightLayout;
@@ -91,12 +95,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    _imageManager = [SDWebImageManager sharedManager];
-    
-    [self setupUI];
     
     [self hiddenAllWidget];
+    
+    // Do any additional setup after loading the view from its nib.
+    _imageManager = [SDWebImageManager sharedManager];
     
     if (__dataSource.networkType == eNetworkType_None) {
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"网络好像断开了，请先检查网络。"];
@@ -127,6 +130,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    _dateString = self.inputDateStr;
+    _date = self.inputDate;
+    
+    [self setupUI];
+    [self getNextDayService];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -177,10 +187,11 @@
     gestureRecognizer.numberOfTapsRequired = 1;  // tap次数
     [self.videoImageView addGestureRecognizer:gestureRecognizer];
     
-    NSString *dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6];
+    
+//    NSString *dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6];
     // 设置几号，月份和星期
-    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:dateString]];
-    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:[OSDateUtil getCurrentDate] String:dateString event:nil]];
+    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
+    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
     
     // 配置属性
     // 日期
@@ -267,7 +278,7 @@
 
     // event
     if (![NSString emptyOrNull:_nextDayModel.event]) {
-        [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:[OSDateUtil getCurrentDate] String:[OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] event:_nextDayModel.event]];
+        [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:self.inputDate String:self.inputDateStr event:_nextDayModel.event]];
     }
     
     // 地理位置 reverse
@@ -436,7 +447,7 @@
 
 - (void)getNextDayService
 {
-    self.userBean.dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE14];
+    self.userBean.dateString = [OSDateUtil getStringDate:_inputDate formatType:SIMPLEFORMATTYPE14];
     OSNetwork *network = [[OSNetwork alloc] init];
     
     __weak typeof(self) weakSelf = self;
@@ -448,15 +459,15 @@
         [strongSelf setupFullInformation];
         
     } failedlock:^(NSURLSessionDataTask *task, NSError *error) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"服务器正在更新数据，请稍后再试。"];
-        [alertView addButtonWithTitle:@"确定"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alertView) {
-                                  
-                              }];
-        alertView.enabledParallaxEffect = NO;
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+//        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"服务器正在更新数据，请稍后再试。"];
+//        [alertView addButtonWithTitle:@"确定"
+//                                 type:SIAlertViewButtonTypeDefault
+//                              handler:^(SIAlertView *alertView) {
+//                                  
+//                              }];
+//        alertView.enabledParallaxEffect = NO;
+//        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+//        [alertView show];
     }];
 }
 

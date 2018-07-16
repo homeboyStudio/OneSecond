@@ -162,6 +162,18 @@ static NSString *SIMPLEFORMATTYPESTRING21 = @"M.d";
 + (NSDate *)getCurrentDate;
 
 /**
+ 获取某天下一天的 date
+ @return 时间字符串
+ */
++ (NSDate *)getNextDateSince:(NSDate *) date;
+
+/**
+ 获取某天前一天的 date
+ @return 时间字符串
+ */
++ (NSDate *)getPrevDateSince:(NSDate *) date ;
+
+/**
  将日期字串转为日期对象,dateStr需超过8位且不能为空,否则返回nil
  @param dateStr 日期字符串
  @return 日期对象

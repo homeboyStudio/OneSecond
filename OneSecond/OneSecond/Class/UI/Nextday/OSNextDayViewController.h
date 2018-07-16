@@ -10,4 +10,7 @@
 
 @interface OSNextDayViewController : OSRootViewController
 
+@property (nonatomic, strong) NSString *inputDateStr; // 所需显示的日期 (string)
+@property (nonatomic, strong) NSDate *inputDate; // 所需显示的日期
+
 @end
