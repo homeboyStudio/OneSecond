@@ -62,7 +62,6 @@
 //    self.osNavigationController.navigationBarBackgroundAlpha = 0;
 //    [self.osNavigationController setNavigationBarHidden:YES animated:YES];
     [self.osNavigationController setNavigationBarHidden:YES];
-    
     NSString *nowDate = [OSDateUtil getMonthStringWithDate:[OSDateUtil getCurrentTime]];
     UIImage *image =  [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",nowDate]];
  

@@ -294,7 +294,7 @@
 		ADFDE84E1BD937D100373948 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFDE84D1BD937D100373948 /* AVFoundation.framework */; };
 		ADFDE8501BD937D900373948 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFDE84F1BD937D900373948 /* AssetsLibrary.framework */; };
 		ADFDE85D1BDA863000373948 /* btn_video_flip_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADFDE85B1BDA863000373948 /* btn_video_flip_camera@2x.png */; };
-		C7B16CB620F6FFCB0015E701 /* OSNextDayRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B16CB520F6FFCB0015E701 /* OSNextDayRootViewController.m */; };
+		C7B16CBC20F72CB40015E701 /* OSNextDayRootScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B16CBB20F72CB40015E701 /* OSNextDayRootScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -956,8 +956,8 @@
 		ADFDE84F1BD937D900373948 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ADFDE85B1BDA863000373948 /* btn_video_flip_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_video_flip_camera@2x.png"; sourceTree = "<group>"; };
 		B9C7C72A2C7DA1C456012FBF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C7B16CB420F6FFCB0015E701 /* OSNextDayRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSNextDayRootViewController.h; sourceTree = "<group>"; };
-		C7B16CB520F6FFCB0015E701 /* OSNextDayRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSNextDayRootViewController.m; sourceTree = "<group>"; };
+		C7B16CBA20F72CB40015E701 /* OSNextDayRootScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSNextDayRootScrollViewController.h; sourceTree = "<group>"; };
+		C7B16CBB20F72CB40015E701 /* OSNextDayRootScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSNextDayRootScrollViewController.m; sourceTree = "<group>"; };
 		CFE3CC406DB2963DE16FA370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1058,8 +1058,8 @@
 		3719DBF91BE735CE002854D0 /* Nextday */ = {
 			isa = PBXGroup;
 			children = (
-				C7B16CB420F6FFCB0015E701 /* OSNextDayRootViewController.h */,
-				C7B16CB520F6FFCB0015E701 /* OSNextDayRootViewController.m */,
+				C7B16CBA20F72CB40015E701 /* OSNextDayRootScrollViewController.h */,
+				C7B16CBB20F72CB40015E701 /* OSNextDayRootScrollViewController.m */,
 				37EF615F1C05580800050F8A /* OSNextDayViewController.h */,
 				37EF61601C05580800050F8A /* OSNextDayViewController.m */,
 				37EF61611C05580800050F8A /* OSNextDayViewController.xib */,
@@ -2758,7 +2758,6 @@
 				377E9B4B1C198CFB00D3ABB6 /* OSAboutViewController.m in Sources */,
 				3719DC311BE75864002854D0 /* JTCalendarWeekDayView.m in Sources */,
 				ADB2EECA1BCAAB1100F7452F /* AppDelegate.m in Sources */,
-				C7B16CB620F6FFCB0015E701 /* OSNextDayRootViewController.m in Sources */,
 				377360161BEE1E4B00AD451F /* FXBlurView.m in Sources */,
 				377B6ED01C06D06B00C19B75 /* SDWebImageManager.m in Sources */,
 				377B6ECA1C06D06B00C19B75 /* NSData+ImageContentType.m in Sources */,
@@ -2854,6 +2853,7 @@
 				AD577A3E1C107CE6000171C9 /* THLabel.m in Sources */,
 				AD3D37D81BD2700100FEFA08 /* UIImage+OSColor.m in Sources */,
 				AD01AE1B1BDD324F00B651C1 /* DB.m in Sources */,
+				C7B16CBC20F72CB40015E701 /* OSNextDayRootScrollViewController.m in Sources */,
 				377B6ECC1C06D06B00C19B75 /* SDWebImageCompat.m in Sources */,
 				AD1E228C1BD3FF16003895E1 /* OSTableViewCell.m in Sources */,
 				372A60BE1C5DE67C00489145 /* OSVideoClipViewModel.m in Sources */,
