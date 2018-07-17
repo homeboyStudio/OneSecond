@@ -13,7 +13,7 @@
 #import "OSRecordingViewController.h"
 #import "OSNextDayViewController.h"
 #import "OSSettingViewController.h"
-#import "OSNextDayRootScrollViewController.h"
+#import "OSNextDayRootViewController.h"
 
 @interface OSLeftSideViewController ()<UITableViewDelegate, OSReplayViewControllerDelegate>
 
@@ -152,7 +152,7 @@
             OSSideMenuController *menuController = (OSSideMenuController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             OSNavigationController *navigationCotroller = (OSNavigationController *)menuController.rootViewController;
             if (![navigationCotroller.topViewController isKindOfClass:[OSNextDayViewController class]]) {
-                OSNavigationController *nav = [[OSNavigationController alloc] initWithRootViewController:[[OSNextDayRootScrollViewController alloc] init]];
+                OSNavigationController *nav = [[OSNavigationController alloc] initWithRootViewController:[[OSNextDayRootViewController alloc] init]];
                 [menuController setRootViewController:nav];
             }
             [menuController hideLeftViewAnimated:YES completionHandler:^{

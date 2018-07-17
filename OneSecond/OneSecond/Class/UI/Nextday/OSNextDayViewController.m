@@ -96,6 +96,12 @@
 {
     [super viewDidLoad];
     
+    _dateString = self.inputDateStr;
+    _date = self.inputDate;
+    
+    [self setupUI];
+    [self getNextDayService];
+    
     [self hiddenAllWidget];
     
     // Do any additional setup after loading the view from its nib.
@@ -130,12 +136,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    _dateString = self.inputDateStr;
-    _date = self.inputDate;
-    
-    [self setupUI];
-    [self getNextDayService];
 
 }
 
@@ -240,6 +240,19 @@
     tapGestureRecognizer.numberOfTapsRequired = 1;  // tap次数
     [self.frontBgView addGestureRecognizer:tapGestureRecognizer];
 }
+
+- (void)updateUI {
+    
+    _dateString = self.inputDateStr;
+    _date = self.inputDate;
+        
+    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
+    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
+    
+    [self getNextDayService];
+    
+}
+
 
 - (void)setupFullInformation
 {
