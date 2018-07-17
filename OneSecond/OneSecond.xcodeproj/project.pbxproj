@@ -2346,7 +2346,6 @@
 				ADB2EEDE1BCAAB1100F7452F /* OneSecondTests */,
 				ADB2EEE91BCAAB1100F7452F /* OneSecondUITests */,
 				ADB2EEC31BCAAB1100F7452F /* Products */,
-				FF4813E56660C3B85CF226E0 /* Pods */,
 				2199D791561151B01392D61F /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -2388,6 +2387,7 @@
 		ADB2EEDE1BCAAB1100F7452F /* OneSecondTests */ = {
 			isa = PBXGroup;
 			children = (
+				FF4813E56660C3B85CF226E0 /* Pods */,
 				ADB2EEDF1BCAAB1100F7452F /* OneSecondTests.m */,
 				ADB2EEE11BCAAB1100F7452F /* Info.plist */,
 			);
@@ -2443,6 +2443,7 @@
 				CFE3CC406DB2963DE16FA370 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

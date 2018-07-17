@@ -29,7 +29,11 @@
 
 
 
-@property (nonatomic, strong) UIPanGestureRecognizer *swipeGR;
+@property (nonatomic, strong) UIPanGestureRecognizer *swipeGR; // 检测手势
+
+@property (nonatomic, assign) BOOL updatedTop; //用来表示上方缓存视图是否准备好
+@property (nonatomic, assign) BOOL updatedBot; //用来表示下方缓存视图是否准备好
+
 
 
 @end
@@ -56,11 +60,16 @@
         //_OSNextDayRootScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     
+    //flag 防止出现view出错 以及重复设置UI的情况
+    _updatedTop = YES;
+    _updatedBot = NO;
+    
     //设置日期
     _currentDate = [OSDateUtil getCurrentDate];
     _cachedDateTop = [OSDateUtil getPrevDateSince:_currentDate];
     _cachedDateBot = [OSDateUtil getNextDateSince:_currentDate];
     
+    //设置日期string
     _currentDateStr = [OSDateUtil getStringDate:_currentDate formatType:SIMPLEFORMATTYPE6];
     _cachedDateStrTop = [OSDateUtil getStringDate:_cachedDateTop formatType:SIMPLEFORMATTYPE6];
     _cachedDateStrBot = [OSDateUtil getStringDate:_cachedDateBot formatType:SIMPLEFORMATTYPE6];
@@ -129,39 +138,43 @@
     CGFloat targetY = DEVICE_HEIGHT / 10;
     
     //向上向下活动逻辑
-    if (y > targetY && fabs(x) < fabs(targetX)) {
+    if (y > targetY && fabs(x) < fabs(targetX) && !_updatedTop) {
         //准备View
         if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
             _secondNextDayViewController.inputDate = _cachedDateTop;
             _secondNextDayViewController.inputDateStr = _cachedDateStrTop;
             _secondNextDayViewController.view.frame = _cachedFrameTop;
             [_secondNextDayViewController updateUI];
-            
+            _updatedTop = YES;
+            _updatedBot = NO;
         } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
             _firstNextDayViewController.inputDate = _cachedDateTop;
             _firstNextDayViewController.inputDateStr = _cachedDateStrTop;
             _firstNextDayViewController.view.frame = _cachedFrameTop;
             [_firstNextDayViewController updateUI];
+            _updatedTop = YES;
+            _updatedBot = NO;
         }
         
-    } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6]) {
+    } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && !_updatedBot) {
         
             if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
                 _secondNextDayViewController.inputDate = _cachedDateBot;
                 _secondNextDayViewController.inputDateStr = _cachedDateStrBot;
                 _secondNextDayViewController.view.frame = _cachedFrameBot;
                 [_secondNextDayViewController updateUI];
+                _updatedTop = NO;
+                _updatedBot = YES;
             
         } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
                 _firstNextDayViewController.inputDate = _cachedDateBot;
                 _firstNextDayViewController.inputDateStr = _cachedDateStrBot;
                 _firstNextDayViewController.view.frame = _cachedFrameBot;
                 [_firstNextDayViewController updateUI];
+                _updatedTop = NO;
+                _updatedBot = YES;
         }
-        
     }
-    
-    
 }
 
 - (void)gestureDidFinish:(CGPoint)translation {
@@ -173,37 +186,49 @@
     CGFloat targetX = DEVICE_WIDTH / 5;
     CGFloat targetY = DEVICE_HEIGHT / 7;
     
-     if (y > targetY && fabs(x) < fabs(targetX)) {
+     if (y > targetY && fabs(x) < fabs(targetX) && _updatedTop) {
          //禁止滑动
          [_swipeGR  setEnabled:NO];
          
          //交换cachedView和currentView的位置
-         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
              CGRect temp = _firstNextDayViewController.view.frame;
              _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
              _secondNextDayViewController.view.frame = temp;
              } completion:^(BOOL finished) {
                  //允许滑动
                  [_swipeGR setEnabled:YES];
+                 
                  //更新日期
                  [self updateTimeInfoWithDate:_cachedDateTop];
+                 
+                 //清空flag
+                 _updatedTop = NO;
+                 _updatedBot = NO;
 
              }];
          
-     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6]) {
+     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && _updatedBot) {
+         //禁止滑动
          [_swipeGR  setEnabled:NO];
-         CGRect temp = _firstNextDayViewController.view.frame;
-         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+         
+         //交换cachedView和currentView的位置
+         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
+             CGRect temp = _firstNextDayViewController.view.frame;
              _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
              _secondNextDayViewController.view.frame = temp;
          } completion:^(BOOL finished) {
              //允许滑动
              [_swipeGR setEnabled:YES];
+             
              //更新日期
              [self updateTimeInfoWithDate:_cachedDateBot];
+             
+             //清空flag
+             _updatedTop = NO;
+             _updatedBot = NO;
          }];
      }
-    
 }
 
 #pragma ---------------- 功能函数 -----------------------
@@ -218,7 +243,7 @@
     
 }
 
-#pragma --------------- delegate -----------------------
+#pragma --------------- UIGestureRecognizer delegate -----------------------
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;

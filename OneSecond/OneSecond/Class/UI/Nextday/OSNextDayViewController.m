@@ -95,17 +95,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
+    //初始化日期
     _dateString = self.inputDateStr;
     _date = self.inputDate;
     
+    //初始化UI
     [self setupUI];
-    [self getNextDayService];
     
+    //连接网络，获得NextDay的内容
+    [self getNextDayService];
+
+    //隐藏所有控件
     [self hiddenAllWidget];
     
-    // Do any additional setup after loading the view from its nib.
+    //初始化SDWebImageManager
     _imageManager = [SDWebImageManager sharedManager];
+    //设置占用内存上限
+    [_imageManager.imageCache setMaxMemoryCountLimit:3];
     
     if (__dataSource.networkType == eNetworkType_None) {
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"网络好像断开了，请先检查网络。"];
@@ -187,8 +195,6 @@
     gestureRecognizer.numberOfTapsRequired = 1;  // tap次数
     [self.videoImageView addGestureRecognizer:gestureRecognizer];
     
-    
-//    NSString *dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6];
     // 设置几号，月份和星期
     [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
     [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
@@ -243,12 +249,15 @@
 
 - (void)updateUI {
     
+    //更新日期
     _dateString = self.inputDateStr;
     _date = self.inputDate;
-        
+    
+    //更新文字标签
     [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
     [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
     
+    //连接网络，重新获取NextDay的内容
     [self getNextDayService];
     
 }
@@ -267,7 +276,7 @@
     }else {
         imageUrlString = _nextDayModel.imagesModel.big568h3x;
     }
-
+    
     [_imageManager downloadImageWithURL:[NSURL URLWithString:imageUrlString] options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize) {
 
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -288,6 +297,8 @@
             });
         }];
     }];
+    
+    
 
     // event
     if (![NSString emptyOrNull:_nextDayModel.event]) {
@@ -688,6 +699,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
