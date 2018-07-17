@@ -21,7 +21,7 @@
 #define offsetLayoutHeight ([OSDevice isDeviceIPhone4s] ? 60 : ([OSDevice isDeviceIPhone5] ? 40 : ([OSDevice isDeviceIPhone6] ? 40 : 40)))
 #define offsetImageViewHeight ([OSDevice isDeviceIPhone4s] ? 240.0f : ([OSDevice isDeviceIPhone5] ? 240.0f : ([OSDevice isDeviceIPhone6] ? 281.0f : 310.5f)))
 
-@interface OSCalendarViewController ()<OSCalendarcellsModelDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface OSCalendarViewController ()<OSCalendarcellsModelDelegate, UITableViewDataSource, UITableViewDelegate, CAAnimationDelegate>
 
 @property (nonatomic, strong) OSCalendarCellsModel *infoViewModel;
 @property (nonatomic, weak) IBOutlet OSTableView *calendarTableView;
@@ -97,7 +97,6 @@
     }else {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
-
     }
     
     //防止iOS 11 出现头顶20像素空白

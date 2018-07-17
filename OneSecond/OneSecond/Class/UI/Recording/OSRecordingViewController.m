@@ -16,7 +16,7 @@
 
 typedef void (^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
 
-@interface OSRecordingViewController ()<AVCaptureFileOutputRecordingDelegate>
+@interface OSRecordingViewController ()<AVCaptureFileOutputRecordingDelegate, CAAnimationDelegate>
 
 @property (nonatomic, strong) AVCaptureSession *captureSession;  // 负责输入和输出设备间的数据传递
 @property (nonatomic, strong) AVCaptureDeviceInput *videoCaptureDeviceInput; // 负责从AVCaptureDevice获得输入数据
