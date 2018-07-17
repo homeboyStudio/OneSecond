@@ -58,10 +58,8 @@
     
     [self.infoViewModel createTableData];
     
-    // 透明度
-//    self.osNavigationController.navigationBarBackgroundAlpha = 0;
-//    [self.osNavigationController setNavigationBarHidden:YES animated:YES];
     [self.osNavigationController setNavigationBarHidden:YES];
+    
     NSString *nowDate = [OSDateUtil getMonthStringWithDate:[OSDateUtil getCurrentTime]];
     UIImage *image =  [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg",nowDate]];
  
@@ -83,10 +81,12 @@
 //    
 //    [self.view insertSubview:_blurImage aboveSubview:_backgroundImageView];
     
+    
+    
     if ([OSDevice isDeviceIPhone4s]) {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
-       
+
     }else if ([OSDevice isDeviceIPhone5]) {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
@@ -97,8 +97,14 @@
     }else {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
-       
+
     }
+    
+    //防止iOS 11 出现头顶20像素空白
+    if (@available(iOS 11.0, *)) {
+        _calendarTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     
     // 子线程加载数据
     [self getAllDateModelFromDateBase];

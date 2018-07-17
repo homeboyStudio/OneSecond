@@ -54,12 +54,7 @@
 }
 
 - (void)setupUI {
-    
-    //这里和系统有关系
-    if (@available(iOS 11.0, *)) {
-        //_OSNextDayRootScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    
+
     //flag 防止出现view出错 以及重复设置UI的情况
     _updatedTop = YES;
     _updatedBot = NO;
@@ -139,45 +134,53 @@
     
     //向上向下活动逻辑
     if (y > targetY && fabs(x) < fabs(targetX) && !_updatedTop) {
-        //准备View
+        
+        //判断哪个视图是缓存视图
         if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
-            _secondNextDayViewController.inputDate = _cachedDateTop;
-            _secondNextDayViewController.inputDateStr = _cachedDateStrTop;
-            _secondNextDayViewController.view.frame = _cachedFrameTop;
-            [_secondNextDayViewController updateUI];
+            
+            //准备缓存视图
+            [self updateViewController:_secondNextDayViewController withDate:_cachedDateTop andDateStr:_cachedDateStrTop andFrame:_cachedFrameTop];
+            
+            //设置flag
             _updatedTop = YES;
             _updatedBot = NO;
+            
         } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
-            _firstNextDayViewController.inputDate = _cachedDateTop;
-            _firstNextDayViewController.inputDateStr = _cachedDateStrTop;
-            _firstNextDayViewController.view.frame = _cachedFrameTop;
-            [_firstNextDayViewController updateUI];
+            
+            //准备缓存视图
+            [self updateViewController:_firstNextDayViewController withDate:_cachedDateTop andDateStr:_cachedDateStrTop andFrame:_cachedFrameTop];
+            
+            //设置flag
             _updatedTop = YES;
             _updatedBot = NO;
         }
         
     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && !_updatedBot) {
         
-            if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
-                _secondNextDayViewController.inputDate = _cachedDateBot;
-                _secondNextDayViewController.inputDateStr = _cachedDateStrBot;
-                _secondNextDayViewController.view.frame = _cachedFrameBot;
-                [_secondNextDayViewController updateUI];
-                _updatedTop = NO;
-                _updatedBot = YES;
+            //判断哪个视图是缓存视图
+        if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
+                
+            //准备缓存视图
+            [self updateViewController:_secondNextDayViewController withDate:_cachedDateBot andDateStr:_cachedDateStrBot andFrame:_cachedFrameBot];
+                
+            //设置flag
+            _updatedTop = NO;
+            _updatedBot = YES;
             
         } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
-                _firstNextDayViewController.inputDate = _cachedDateBot;
-                _firstNextDayViewController.inputDateStr = _cachedDateStrBot;
-                _firstNextDayViewController.view.frame = _cachedFrameBot;
-                [_firstNextDayViewController updateUI];
-                _updatedTop = NO;
-                _updatedBot = YES;
+            
+            //准备缓存视图
+            [self updateViewController:_firstNextDayViewController withDate:_cachedDateBot andDateStr:_cachedDateStrBot andFrame:_cachedFrameBot];
+            
+            //设置flag
+            _updatedTop = NO;
+            _updatedBot = YES;
         }
     }
 }
 
 - (void)gestureDidFinish:(CGPoint)translation {
+    
     // 获取横向纵向滑动距离
     CGFloat x = translation.x;
     CGFloat y = translation.y;
@@ -187,15 +190,17 @@
     CGFloat targetY = DEVICE_HEIGHT / 7;
     
      if (y > targetY && fabs(x) < fabs(targetX) && _updatedTop) {
+         
          //禁止滑动
          [_swipeGR  setEnabled:NO];
          
          //交换cachedView和currentView的位置
-         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
+         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
              CGRect temp = _firstNextDayViewController.view.frame;
              _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
              _secondNextDayViewController.view.frame = temp;
              } completion:^(BOOL finished) {
+                 
                  //允许滑动
                  [_swipeGR setEnabled:YES];
                  
@@ -209,15 +214,17 @@
              }];
          
      } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && _updatedBot) {
+         
          //禁止滑动
          [_swipeGR  setEnabled:NO];
          
          //交换cachedView和currentView的位置
-         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveLinear animations:^{
+         [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
              CGRect temp = _firstNextDayViewController.view.frame;
              _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
              _secondNextDayViewController.view.frame = temp;
          } completion:^(BOOL finished) {
+             
              //允许滑动
              [_swipeGR setEnabled:YES];
              
@@ -240,7 +247,13 @@
     _currentDateStr = [OSDateUtil getStringDate:_currentDate formatType:SIMPLEFORMATTYPE6];
     _cachedDateStrTop = [OSDateUtil getStringDate:_cachedDateTop formatType:SIMPLEFORMATTYPE6];
     _cachedDateStrBot = [OSDateUtil getStringDate:_cachedDateBot formatType:SIMPLEFORMATTYPE6];
-    
+}
+
+- (void)updateViewController: (OSNextDayViewController *)vc withDate: (NSDate *)date andDateStr: (NSString *)dateStr andFrame: (CGRect)Frame {
+    vc.inputDate = date;
+    vc.inputDateStr = dateStr;
+    vc.view.frame = Frame;
+    [vc updateUI];
 }
 
 #pragma --------------- UIGestureRecognizer delegate -----------------------
