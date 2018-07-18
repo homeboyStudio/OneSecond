@@ -92,11 +92,16 @@
     _firstNextDayViewController.view.frame = _currentFrame;
     _secondNextDayViewController.view.frame = _cachedFrameTop;
     
+    //表示view是当前正在展示的view 还是缓存的view，1为当前正在显示，0为缓存的
+    _firstNextDayViewController.status = 1;
+    _secondNextDayViewController.status = 0;
+    
     //添加到当前视图
     [self addChildViewController:_firstNextDayViewController];
     [self addChildViewController:_secondNextDayViewController];
     [self.view addSubview:_firstNextDayViewController.view];
     [self.view addSubview:_secondNextDayViewController.view];
+   
     
     //添加手势
     _swipeGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
@@ -110,6 +115,7 @@
     if (swipe.state == UIGestureRecognizerStateChanged) {
         [self commitTranslation:[swipe translationInView:self.view]];
     }
+    
     
     if (swipe.state == UIGestureRecognizerStateEnded) {
         [self gestureDidFinish:[swipe translationInView:self.view]];
@@ -130,7 +136,7 @@
     if (y > targetY && fabs(x) < fabs(targetX) && !_updatedTop) {
         
         //判断哪个视图是缓存视图
-        if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
+        if (_firstNextDayViewController.status == 1) {
             
             //准备缓存视图
             [self updateViewController:_secondNextDayViewController withDate:_cachedDateTop andDateStr:_cachedDateStrTop andFrame:_cachedFrameTop];
@@ -139,7 +145,8 @@
             _updatedTop = YES;
             _updatedBot = NO;
             
-        } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
+            
+        } else if (_secondNextDayViewController.status == 1) {
             
             //准备缓存视图
             [self updateViewController:_firstNextDayViewController withDate:_cachedDateTop andDateStr:_cachedDateStrTop andFrame:_cachedFrameTop];
@@ -152,7 +159,7 @@
     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && !_updatedBot) {
         
             //判断哪个视图是缓存视图
-        if (CGRectEqualToRect(_firstNextDayViewController.view.frame, _currentFrame)) {
+        if (_firstNextDayViewController.status == 1) {
                 
             //准备缓存视图
             [self updateViewController:_secondNextDayViewController withDate:_cachedDateBot andDateStr:_cachedDateStrBot andFrame:_cachedFrameBot];
@@ -161,7 +168,7 @@
             _updatedTop = NO;
             _updatedBot = YES;
             
-        } else if (CGRectEqualToRect(_secondNextDayViewController.view.frame, _currentFrame)) {
+        } else if (_secondNextDayViewController.status == 1) {
             
             //准备缓存视图
             [self updateViewController:_firstNextDayViewController withDate:_cachedDateBot andDateStr:_cachedDateStrBot andFrame:_cachedFrameBot];
@@ -171,6 +178,42 @@
             _updatedBot = YES;
         }
     }
+    
+    //设置上拉和下拉动画
+    
+    if (_updatedTop && y > 0) {
+        
+        CGFloat originalY = -DEVICE_HEIGHT;
+        
+        if (_firstNextDayViewController.view.frame.origin.y < 0) {
+            
+            [self moveView:_firstNextDayViewController verticallyUpOrDown:y withOriginalY:originalY];
+            [self moveView:_secondNextDayViewController verticallyUpOrDown:y withOriginalY:0];
+            
+        } else if (_secondNextDayViewController.view.frame.origin.y < 0) {
+            
+            [self moveView:_secondNextDayViewController verticallyUpOrDown:y withOriginalY:originalY];
+            [self moveView:_firstNextDayViewController verticallyUpOrDown:y withOriginalY:0];
+
+        }
+        
+    } else if (_updatedBot && y < 0) {
+        
+        CGFloat originalY = DEVICE_HEIGHT;
+
+        if (_firstNextDayViewController.view.frame.origin.y > 0) {
+            
+            [self moveView:_firstNextDayViewController verticallyUpOrDown:y withOriginalY:originalY];
+            [self moveView:_secondNextDayViewController verticallyUpOrDown:y withOriginalY:0];
+
+        } else if (_secondNextDayViewController.view.frame.origin.y > 0) {
+            
+            [self moveView:_secondNextDayViewController verticallyUpOrDown:y withOriginalY:originalY];
+            [self moveView:_firstNextDayViewController verticallyUpOrDown:y withOriginalY:0];
+            
+        }
+    }
+    
 }
 
 - (void)gestureDidFinish:(CGPoint)translation {
@@ -178,10 +221,9 @@
     //获取横向纵向滑动距离
     CGFloat x = translation.x;
     CGFloat y = translation.y;
-    
-    //设置有效滑动距离
+         //设置有效滑动距离
     CGFloat targetX = DEVICE_WIDTH / 5;
-    CGFloat targetY = DEVICE_HEIGHT / 7;
+    CGFloat targetY = DEVICE_HEIGHT / 4;
     
     //判断是否是有效滑动
     if (y > targetY && fabs(x) < fabs(targetX) && _updatedTop) {
@@ -190,10 +232,10 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            //交换位置
-            [self swap:_firstNextDayViewController between:_secondNextDayViewController];
+            //重新设置位置和状态
+            [self replaceView:_firstNextDayViewController andView:_secondNextDayViewController];
             
         } completion:^(BOOL finished) {
                  
@@ -214,10 +256,11 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            //交换位置
-            [self swap:_firstNextDayViewController between:_secondNextDayViewController];
+            //重新设置位置和状态
+            [self replaceView:_firstNextDayViewController andView:_secondNextDayViewController];
+
 
         } completion:^(BOOL finished) {
              
@@ -232,6 +275,10 @@
             _updatedBot = NO;
         }];
     }
+    
+   else {
+      [self resetView:_firstNextDayViewController orView:_secondNextDayViewController];
+   }
 }
 
 #pragma ---------------- 功能函数 -----------------------
@@ -253,13 +300,89 @@
     vc.inputDateStr = dateStr;
     vc.view.frame = frame;
     [vc updateUI];
+    
+    //提升当前view的层级
+    [self.view bringSubviewToFront:vc.view];
 }
 
-//交换位置
-- (void)swap: (OSNextDayViewController *)vc1 between: (OSNextDayViewController *)vc2 {
-    CGRect temp = vc1.view.frame;
-    vc1.view.frame = vc2.view.frame;
-    vc2.view.frame = temp;
+//重新位置和状态
+- (void)replaceView: (OSNextDayViewController *)vc1 andView: (OSNextDayViewController *)vc2 {
+    if (_updatedTop) {
+        if (vc1.status == 1) {
+            //交换status
+            NSInteger temp = vc1.status;
+            vc1.status = vc2.status;
+            vc2.status = temp;
+            
+            [vc1.view setFrame:_cachedFrameTop];
+            [vc2.view setFrame:_currentFrame];
+            
+        } else if (vc2.status == 1) {
+            //交换status
+            NSInteger temp = vc1.status;
+            vc1.status = vc2.status;
+            vc2.status = temp;
+            
+            [vc2.view setFrame:_cachedFrameTop];
+            [vc1.view setFrame:_currentFrame];
+        }
+    } else if (_updatedBot) {
+        if (vc1.status == 1) {
+            //交换status
+            NSInteger temp = vc1.status;
+            vc1.status = vc2.status;
+            vc2.status = temp;
+            
+            [vc1.view setFrame:_cachedFrameBot];
+            [vc2.view setFrame:_currentFrame];
+            
+        } else if (vc2.status == 1) {
+            //交换status
+            NSInteger temp = vc1.status;
+            vc1.status = vc2.status;
+            vc2.status = temp;
+            
+            [vc2.view setFrame:_cachedFrameBot];
+            [vc1.view setFrame:_currentFrame];
+        }
+        
+    }
+}
+
+//跟随手势移动view
+- (void)moveView: (OSNextDayViewController *)vc verticallyUpOrDown: (CGFloat) y withOriginalY: (CGFloat) orginalY{
+    
+    CGFloat newY = orginalY + y;
+    
+    [vc.view setFrame:CGRectMake(0, newY, DEVICE_WIDTH, DEVICE_HEIGHT)];
+    
+}
+
+
+//移动view到初始的位置
+- (void)resetView: (OSNextDayViewController *)vc1 orView: (OSNextDayViewController *)vc2 {
+    if (_updatedTop) {
+        
+        if (vc1.status == 0) {
+            [vc1.view setFrame:_cachedFrameTop];
+            [vc2.view setFrame:_currentFrame];
+        } else if (vc2.status == 0) {
+            [vc2.view setFrame:_cachedFrameTop];
+            [vc1.view setFrame:_currentFrame];
+
+        }
+        
+    } else if (_updatedBot) {
+        
+        if (vc1.status == 0) {
+            [vc1.view setFrame:_cachedFrameBot];
+            [vc2.view setFrame:_currentFrame];
+        } else if (vc2.status == 0) {
+            [vc2.view setFrame:_cachedFrameBot];
+            [vc1.view setFrame:_currentFrame];
+        }
+        
+    }
 }
 
 #pragma --------------- UIGestureRecognizer delegate -----------------------
