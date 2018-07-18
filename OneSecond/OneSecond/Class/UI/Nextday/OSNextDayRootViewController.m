@@ -54,8 +54,6 @@
 }
 
 - (void)setupUI {
-    UIColor *backgroundColor = [[UIColor alloc] initWithRed:160 green:238 blue:225 alpha:0];
-    self.view.backgroundColor = backgroundColor;
 
     //flag 防止出现view出错 以及重复设置UI的情况
     _updatedTop = YES;
@@ -126,7 +124,7 @@
     
     //设置有效滑动距离
     CGFloat targetX = DEVICE_WIDTH / 5;
-    CGFloat targetY = DEVICE_HEIGHT / 10;
+    CGFloat targetY = DEVICE_HEIGHT / 20;
     
     //向上向下活动逻辑
     if (y > targetY && fabs(x) < fabs(targetX) && !_updatedTop) {
@@ -192,23 +190,23 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGRect temp = _firstNextDayViewController.view.frame;
-            _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
-            _secondNextDayViewController.view.frame = temp;
-            } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            //交换位置
+            [self swap:_firstNextDayViewController between:_secondNextDayViewController];
+            
+        } completion:^(BOOL finished) {
                  
-                //允许滑动
-                [_swipeGR setEnabled:YES];
+            //允许滑动
+            [_swipeGR setEnabled:YES];
                  
-                //更新日期
-                [self updateTimeInfoWithDate:_cachedDateTop];
+            //更新日期
+            [self updateTimeInfoWithDate:_cachedDateTop];
                  
-                //清空flag
-                _updatedTop = NO;
-                _updatedBot = NO;
-
-            }];
+            //清空flag
+            _updatedTop = NO;
+            _updatedBot = NO;
+        }];
          
     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && _updatedBot) {
          
@@ -216,10 +214,11 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGRect temp = _firstNextDayViewController.view.frame;
-            _firstNextDayViewController.view.frame = _secondNextDayViewController.view.frame;
-            _secondNextDayViewController.view.frame = temp;
+        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            //交换位置
+            [self swap:_firstNextDayViewController between:_secondNextDayViewController];
+
         } completion:^(BOOL finished) {
              
             //允许滑动
@@ -237,6 +236,7 @@
 
 #pragma ---------------- 功能函数 -----------------------
 
+//更新日期
 - (void)updateTimeInfoWithDate:(NSDate *)date {
     _currentDate = date;
     _cachedDateTop = [OSDateUtil getPrevDateSince:_currentDate];
@@ -246,15 +246,25 @@
     _cachedDateStrBot = [OSDateUtil getStringDate:_cachedDateBot formatType:SIMPLEFORMATTYPE6];
 }
 
+//更新UI
 - (void)updateViewController: (OSNextDayViewController *)vc withDate: (NSDate *)date andDateStr: (NSString *)dateStr andFrame: (CGRect)frame {
+    [vc cleanUpUI];
     vc.inputDate = date;
     vc.inputDateStr = dateStr;
     vc.view.frame = frame;
     [vc updateUI];
 }
 
+//交换位置
+- (void)swap: (OSNextDayViewController *)vc1 between: (OSNextDayViewController *)vc2 {
+    CGRect temp = vc1.view.frame;
+    vc1.view.frame = vc2.view.frame;
+    vc2.view.frame = temp;
+}
+
 #pragma --------------- UIGestureRecognizer delegate -----------------------
 
+//防止NavigationController的手势失效
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }

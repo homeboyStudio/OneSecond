@@ -14,5 +14,5 @@
 @property (nonatomic, strong) NSDate *inputDate; // 所需显示的日期
 
 - (void)updateUI;
-
+- (void)cleanUpUI;
 @end

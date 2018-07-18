@@ -262,6 +262,19 @@
     
 }
 
+- (void)cleanUpUI {
+    [self.dayBigLabel setText:nil];
+    [self.dateLabel setText:nil];
+    [self.reverseLabel setText:nil];
+    [self.textLabel setText:nil];
+    [self.textLabel setBackgroundColor:[UIColor clearColor]];
+    [self.musicTitleLabel setText:nil];
+    [self.musicArtistLabel setText:nil];
+    [self.authorNameLabel setText:nil];
+    [self.nextDayIamgeView setImage:nil];
+    [self.videoImageView setImage:nil];
+}
+
 
 - (void)setupFullInformation
 {
