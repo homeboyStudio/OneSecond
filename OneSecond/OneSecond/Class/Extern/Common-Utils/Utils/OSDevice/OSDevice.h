@@ -14,15 +14,15 @@
 #define SYSKEYBOARD_HEIGHT     216.f
 #define SYSKEYBOARD_HEIGHT_6p  226.f
 
-BOOL isIphone5();
-BOOL isIphone6();
-BOOL isIphone6Plus();
-BOOL isRetina();
-BOOL IOS_5_OR_LATER();
-BOOL IOS_6_OR_LATER();
-BOOL IOS_7_OR_LATER();
-BOOL IOS_8_OR_LATER();
-BOOL IOS_9_OR_LATER();
+BOOL isIphone5(void);
+BOOL isIphone6(void);
+BOOL isIphone6Plus(void);
+BOOL isRetina(void);
+BOOL IOS_5_OR_LATER(void);
+BOOL IOS_6_OR_LATER(void);
+BOOL IOS_7_OR_LATER(void);
+BOOL IOS_8_OR_LATER(void);
+BOOL IOS_9_OR_LATER(void);
 
 @interface OSDevice : NSObject
 

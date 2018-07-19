@@ -10,14 +10,14 @@
 
 OSDataSource *__dataSource;
 
-void initDataSource()
+void initDataSource(void)
 {
     if (__dataSource == nil) {
         __dataSource = [[OSDataSource alloc] init];
     }
 }
 
-void freeDataSource()
+void freeDataSource(void)
 {
     __dataSource = nil;
 }

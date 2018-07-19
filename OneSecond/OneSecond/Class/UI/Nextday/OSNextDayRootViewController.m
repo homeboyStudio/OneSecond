@@ -12,20 +12,20 @@
 
 @interface OSNextDayRootViewController () <UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong) OSNextDayViewController *firstNextDayViewController;
-@property(nonatomic,strong) OSNextDayViewController *secondNextDayViewController;
+@property(nonatomic, strong) OSNextDayViewController *firstNextDayViewController;
+@property(nonatomic, strong) OSNextDayViewController *secondNextDayViewController;
 
-@property(nonatomic,copy) NSDate *currentDate; // 当前的日期
-@property(nonatomic,copy) NSDate *cachedDateTop;// 前一天的日期
-@property(nonatomic,copy) NSDate *cachedDateBot;// 后一天的日期
+@property(nonatomic, copy) NSDate *currentDate;          // 当前的日期
+@property(nonatomic, copy) NSDate *cachedDateTop;        // 前一天的日期
+@property(nonatomic, copy) NSDate *cachedDateBot;        // 后一天的日期
 
-@property(nonatomic,copy) NSString *currentDateStr; // 当前的日期
-@property(nonatomic,copy) NSString *cachedDateStrTop;// 前一天的日期
-@property(nonatomic,copy) NSString *cachedDateStrBot;// 后一天的日期
+@property(nonatomic, copy) NSString *currentDateStr;    // 当前的日期
+@property(nonatomic, copy) NSString *cachedDateStrTop;  // 前一天的日期
+@property(nonatomic, copy) NSString *cachedDateStrBot;  // 后一天的日期
 
-@property(nonatomic,assign) CGRect currentFrame; // 当前视图的位置
-@property(nonatomic,assign) CGRect cachedFrameTop; // 上方缓存视图的位置
-@property(nonatomic,assign) CGRect cachedFrameBot; // 下方缓存视图的位置
+@property(nonatomic, assign) CGRect currentFrame;       // 当前视图的位置
+@property(nonatomic, assign) CGRect cachedFrameTop;     // 上方缓存视图的位置
+@property(nonatomic, assign) CGRect cachedFrameBot;     // 下方缓存视图的位置
 
 
 
@@ -111,11 +111,10 @@
 
 #pragma ---------------- 手势相关 -----------------------
 
-- (void)handleSwipe: (UIPanGestureRecognizer *) swipe {
+- (void)handleSwipe:(UIPanGestureRecognizer *)swipe {
     if (swipe.state == UIGestureRecognizerStateChanged) {
         [self commitTranslation:[swipe translationInView:self.view]];
     }
-    
     
     if (swipe.state == UIGestureRecognizerStateEnded) {
         [self gestureDidFinish:[swipe translationInView:self.view]];
@@ -123,7 +122,6 @@
 }
 
 - (void)commitTranslation:(CGPoint)translation {
-    
     // 获取横向纵向滑动距离
     CGFloat x = translation.x;
     CGFloat y = translation.y;
@@ -144,7 +142,6 @@
             //设置flag
             _updatedTop = YES;
             _updatedBot = NO;
-            
             
         } else if (_secondNextDayViewController.status == 1) {
             
@@ -232,22 +229,19 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
-            //重新设置位置和状态
-            [self replaceView:_firstNextDayViewController andView:_secondNextDayViewController];
-            
+        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            //重新设置cachedView位置
+            [self replaceCachedView:self.firstNextDayViewController andView:self.secondNextDayViewController];
         } completion:^(BOOL finished) {
-                 
+            //重新设置currentView的位置并且和cachedView交换状态
+            [self replaceCurrentView:self.firstNextDayViewController andView:self.secondNextDayViewController];
             //允许滑动
-            [_swipeGR setEnabled:YES];
-                 
+            [self.swipeGR setEnabled:YES];
             //更新日期
-            [self updateTimeInfoWithDate:_cachedDateTop];
-                 
+            [self updateTimeInfoWithDate:self.cachedDateTop];
             //清空flag
-            _updatedTop = NO;
-            _updatedBot = NO;
+            self.updatedTop = NO;
+            self.updatedBot = NO;
         }];
          
     } else if (y < -targetY && fabs(x) < fabs(targetY) && _currentDateStr != [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] && _updatedBot) {
@@ -256,28 +250,26 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
-            //重新设置位置和状态
-            [self replaceView:_firstNextDayViewController andView:_secondNextDayViewController];
-
-
+        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            //重新设置cachedView位置
+            [self replaceCachedView:self.firstNextDayViewController andView:self.secondNextDayViewController];
         } completion:^(BOOL finished) {
-             
+            //重新设置currentView的位置并且和cachedView交换状态
+            [self replaceCurrentView:self.firstNextDayViewController andView:self.secondNextDayViewController];
             //允许滑动
-            [_swipeGR setEnabled:YES];
-             
+            [self.swipeGR setEnabled:YES];
             //更新日期
-            [self updateTimeInfoWithDate:_cachedDateBot];
-             
+            [self updateTimeInfoWithDate:self.cachedDateBot];
             //清空flag
-            _updatedTop = NO;
-            _updatedBot = NO;
+            self.updatedTop = NO;
+            self.updatedBot = NO;
         }];
     }
-    
    else {
-      [self resetView:_firstNextDayViewController orView:_secondNextDayViewController];
+       //滑动距离不够，回归原位
+       [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+           [self resetView:self.firstNextDayViewController orView:self.secondNextDayViewController];
+       } completion:nil];
    }
 }
 
@@ -305,8 +297,31 @@
     [self.view bringSubviewToFront:vc.view];
 }
 
-//重新位置和状态
-- (void)replaceView: (OSNextDayViewController *)vc1 andView: (OSNextDayViewController *)vc2 {
+//重新设置cachcedView的位置
+- (void)replaceCachedView: (OSNextDayViewController *)vc1 andView: (OSNextDayViewController *)vc2 {
+    if (_updatedTop) {
+        if (vc1.status == 0) {
+            vc1.view.frame = _currentFrame;
+            vc2.view.frame = _cachedFrameBot;
+        } else if (vc2.status == 0) {
+            vc2.view.frame = _currentFrame;
+            vc1.view.frame = _cachedFrameBot;
+        }
+    } else if (_updatedBot) {
+        if (vc1.status == 0) {
+            vc1.view.frame = _currentFrame;
+            vc2.view.frame = _cachedFrameTop;
+        } else if (vc2.status == 0) {
+            vc2.view.frame = _currentFrame;
+            vc1.view.frame = _cachedFrameTop;
+        }
+        
+    }
+
+}
+
+//重新设置currentview的位置并且交换和cachedView的状态
+- (void)replaceCurrentView: (OSNextDayViewController *)vc1 andView: (OSNextDayViewController *)vc2 {
     if (_updatedTop) {
         if (vc1.status == 1) {
             //交换status
@@ -315,8 +330,7 @@
             vc2.status = temp;
             
             [vc1.view setFrame:_cachedFrameTop];
-            [vc2.view setFrame:_currentFrame];
-            
+
         } else if (vc2.status == 1) {
             //交换status
             NSInteger temp = vc1.status;
@@ -324,7 +338,6 @@
             vc2.status = temp;
             
             [vc2.view setFrame:_cachedFrameTop];
-            [vc1.view setFrame:_currentFrame];
         }
     } else if (_updatedBot) {
         if (vc1.status == 1) {
@@ -332,9 +345,8 @@
             NSInteger temp = vc1.status;
             vc1.status = vc2.status;
             vc2.status = temp;
-            
+
             [vc1.view setFrame:_cachedFrameBot];
-            [vc2.view setFrame:_currentFrame];
             
         } else if (vc2.status == 1) {
             //交换status
@@ -343,11 +355,11 @@
             vc2.status = temp;
             
             [vc2.view setFrame:_cachedFrameBot];
-            [vc1.view setFrame:_currentFrame];
         }
-        
     }
 }
+
+
 
 //跟随手势移动view
 - (void)moveView: (OSNextDayViewController *)vc verticallyUpOrDown: (CGFloat) y withOriginalY: (CGFloat) orginalY{

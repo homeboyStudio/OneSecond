@@ -40,11 +40,11 @@ typedef enum {
 /**
  * Called when the playlist parsing is completed.
  */
-@property (copy) void (^onCompletion)();
+@property (copy) void (^onCompletion)(void);
 /**
  * Called if the playlist parsing failed.
  */
-@property (copy) void (^onFailure)();
+@property (copy) void (^onFailure)(void);
 /**
  * The playlist items stored in the FSPlaylistItem class.
  */

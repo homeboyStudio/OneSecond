@@ -334,7 +334,7 @@
     NSInteger ageResult = 0;
     
     NSCalendar *calendar = [OSDateUtil getCurrentCalendar];
-    NSDateComponents *ageDateComponents = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:birthdate toDate:nowDate options:0];
+    NSDateComponents *ageDateComponents = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:birthdate toDate:nowDate options:0];
     ageResult = ageDateComponents.year;
     
     return ageResult;
@@ -343,7 +343,7 @@
 #pragma mark 获取当前日历
 + (NSCalendar *)getCurrentCalendar
 {
-    NSCalendar *calendar_ = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar_ = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [calendar_ setFirstWeekday:1];
     [calendar_ setLocale:[[NSLocale alloc] initWithLocaleIdentifier:kPierCalendarTimeZone_CN]];
     [calendar_ setMinimumDaysInFirstWeek:1];

@@ -168,8 +168,8 @@
 {
     self.isAllWidgetHidden = NO;
     
-    //[self.osNavigationController setNavigationBarHidden:YES];
-    
+    [self.osNavigationController setNavigationBarBackgroundAlpha:0.0f];
+    [self.osNavigationController setNavigationBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     
@@ -302,9 +302,9 @@
            // 下载完成图片后可以保存图片到相册之中  置为可以保存图像
             // 异步截取图片
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                _cutViewImage = [self imageWithView:self.view];
-                // 可交互状态
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    _cutViewImage = [self imageWithView:self.view];
+                // 可交互状态
                     [self.frontBgView setUserInteractionEnabled:YES];
                 });
             });
@@ -486,15 +486,15 @@
 {
     self.userBean.dateString = [OSDateUtil getStringDate:_inputDate formatType:SIMPLEFORMATTYPE14];
     OSNetwork *network = [[OSNetwork alloc] init];
-    
+
     __weak typeof(self) weakSelf = self;
     [network serverSend:SERVICE_USER_NEXTDAY bean:self.userBean successBlock:^(NSURLSessionDataTask *task) {
-        
+
         __strong typeof(self) strongSelf = weakSelf;
         strongSelf.nextDayModel = [strongSelf.nextDayViewModel convertToNextDayModel:strongSelf.userBean.nextDayModel.resultJsonModel];
         // 配置其他属性
         [strongSelf setupFullInformation];
-        
+
     } failedlock:^(NSURLSessionDataTask *task, NSError *error) {
 //        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"服务器正在更新数据，请稍后再试。"];
 //        [alertView addButtonWithTitle:@"确定"

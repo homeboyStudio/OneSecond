@@ -79,12 +79,12 @@
 {
     if (!self.isShowed) {
         [UIView animateWithDuration:.5f animations:^{
-            [_logoImageView setAlpha:.8f];
+            [self.logoImageView setAlpha:.8f];
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:.5f animations:^{
-                [_detailTextView setAlpha:1.0f];
-                [_startButton setAlpha:1.0f];
+                [self.detailTextView setAlpha:1.0f];
+                [self.startButton setAlpha:1.0f];
             } completion:^(BOOL finished) {
                 self.isShowed = YES;
             }];
