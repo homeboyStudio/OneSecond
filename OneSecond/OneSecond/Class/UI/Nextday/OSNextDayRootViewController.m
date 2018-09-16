@@ -218,7 +218,7 @@
     //获取横向纵向滑动距离
     CGFloat x = translation.x;
     CGFloat y = translation.y;
-         //设置有效滑动距离
+    //设置有效滑动距离
     CGFloat targetX = DEVICE_WIDTH / 5;
     CGFloat targetY = DEVICE_HEIGHT / 4;
     
