@@ -259,7 +259,6 @@
     
     //连接网络，重新获取NextDay的内容
     [self getNextDayService];
-    
 }
 
 - (void)cleanUpUI {
@@ -272,7 +271,7 @@
     [self.musicArtistLabel setText:nil];
     [self.authorNameLabel setText:nil];
     [self.nextDayIamgeView setImage:nil];
-    [self.videoImageView setImage:nil];
+    self.videoImageView.hidden = YES;
 }
 
 

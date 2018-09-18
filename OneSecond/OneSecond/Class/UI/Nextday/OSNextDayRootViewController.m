@@ -220,7 +220,7 @@
     CGFloat y = translation.y;
     //设置有效滑动距离
     CGFloat targetX = DEVICE_WIDTH / 5;
-    CGFloat targetY = DEVICE_HEIGHT / 4;
+    CGFloat targetY = DEVICE_HEIGHT / 6;
     
     //判断是否是有效滑动
     if (y > targetY && fabs(x) < fabs(targetX) && _updatedTop) {
@@ -229,7 +229,7 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             //重新设置cachedView位置
             [self replaceCachedView:self.firstNextDayViewController andView:self.secondNextDayViewController];
         } completion:^(BOOL finished) {
@@ -250,7 +250,7 @@
         [_swipeGR  setEnabled:NO];
          
         //交换cachedView和currentView的位置
-        [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             //重新设置cachedView位置
             [self replaceCachedView:self.firstNextDayViewController andView:self.secondNextDayViewController];
         } completion:^(BOOL finished) {
@@ -267,7 +267,7 @@
     }
    else {
        //滑动距离不够，回归原位
-       [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+       [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
            [self resetView:self.firstNextDayViewController orView:self.secondNextDayViewController];
        } completion:nil];
    }
