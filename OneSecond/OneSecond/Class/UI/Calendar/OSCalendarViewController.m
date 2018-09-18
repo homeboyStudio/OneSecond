@@ -21,7 +21,7 @@
 #define offsetLayoutHeight ([OSDevice isDeviceIPhone4s] ? 60 : ([OSDevice isDeviceIPhone5] ? 40 : ([OSDevice isDeviceIPhone6] ? 40 : 40)))
 #define offsetImageViewHeight ([OSDevice isDeviceIPhone4s] ? 240.0f : ([OSDevice isDeviceIPhone5] ? 240.0f : ([OSDevice isDeviceIPhone6] ? 281.0f : 310.5f)))
 
-@interface OSCalendarViewController ()<OSCalendarcellsModelDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface OSCalendarViewController ()<OSCalendarcellsModelDelegate, UITableViewDataSource, UITableViewDelegate, CAAnimationDelegate>
 
 @property (nonatomic, strong) OSCalendarCellsModel *infoViewModel;
 @property (nonatomic, weak) IBOutlet OSTableView *calendarTableView;
@@ -58,9 +58,6 @@
     
     [self.infoViewModel createTableData];
     
-    // 透明度
-//    self.osNavigationController.navigationBarBackgroundAlpha = 0;
-//    [self.osNavigationController setNavigationBarHidden:YES animated:YES];
     [self.osNavigationController setNavigationBarHidden:YES];
     
     NSString *nowDate = [OSDateUtil getMonthStringWithDate:[OSDateUtil getCurrentTime]];
@@ -84,10 +81,12 @@
 //    
 //    [self.view insertSubview:_blurImage aboveSubview:_backgroundImageView];
     
+    
+    
     if ([OSDevice isDeviceIPhone4s]) {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
-       
+
     }else if ([OSDevice isDeviceIPhone5]) {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
@@ -98,8 +97,13 @@
     }else {
         self.bgImageViewConstraint.constant =  - offsetLayoutHeight;
         self.bgImageViewHeightConstraint.constant = offsetImageViewHeight;
-       
     }
+    
+    //防止iOS 11 出现头顶20像素空白
+    if (@available(iOS 11.0, *)) {
+        _calendarTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     
     // 子线程加载数据
     [self getAllDateModelFromDateBase];

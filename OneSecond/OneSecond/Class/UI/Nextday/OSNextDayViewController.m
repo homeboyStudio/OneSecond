@@ -61,6 +61,10 @@
 @property (nonatomic, strong) OSNextDayModel *nextDayModel;
 @property (nonatomic, strong) OSNextDayViewModel *nextDayViewModel;   // ViewModel
 
+@property (nonatomic, strong) NSString *dateString;
+@property (nonatomic, strong) NSDate *date;
+
+
 // 约束
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textLabelRightLayout;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *textLabelheightLayout;
@@ -93,11 +97,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _imageManager = [SDWebImageManager sharedManager];
+    //初始化日期
+    _dateString = self.inputDateStr;
+    _date = self.inputDate;
     
+    //初始化UI
     [self setupUI];
     
+    //连接网络，获得NextDay的内容
+    [self getNextDayService];
+
+    //隐藏所有控件
     [self hiddenAllWidget];
+    
+    //初始化SDWebImageManager
+    _imageManager = [SDWebImageManager sharedManager];
+    //设置占用内存上限
+    [_imageManager.imageCache setMaxMemoryCountLimit:3];
     
     if (__dataSource.networkType == eNetworkType_None) {
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"网络好像断开了，请先检查网络。"];
@@ -128,6 +144,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -178,10 +195,9 @@
     gestureRecognizer.numberOfTapsRequired = 1;  // tap次数
     [self.videoImageView addGestureRecognizer:gestureRecognizer];
     
-    NSString *dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6];
     // 设置几号，月份和星期
-    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:dateString]];
-    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:[OSDateUtil getCurrentDate] String:dateString event:nil]];
+    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
+    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
     
     // 配置属性
     // 日期
@@ -231,6 +247,34 @@
     [self.frontBgView addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (void)updateUI {
+    
+    //更新日期
+    _dateString = self.inputDateStr;
+    _date = self.inputDate;
+    
+    //更新文字标签
+    [self.dayBigLabel setText:[_nextDayViewModel getBigDayWithDate:_dateString]];
+    [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:_date String:_dateString event:nil]];
+    
+    //连接网络，重新获取NextDay的内容
+    [self getNextDayService];
+}
+
+- (void)cleanUpUI {
+    [self.dayBigLabel setText:nil];
+    [self.dateLabel setText:nil];
+    [self.reverseLabel setText:nil];
+    [self.textLabel setText:nil];
+    [self.textLabel setBackgroundColor:[UIColor clearColor]];
+    [self.musicTitleLabel setText:nil];
+    [self.musicArtistLabel setText:nil];
+    [self.authorNameLabel setText:nil];
+    [self.nextDayIamgeView setImage:nil];
+    self.videoImageView.hidden = YES;
+}
+
+
 - (void)setupFullInformation
 {
     [self showAllWidget];
@@ -246,9 +290,9 @@
     }
     
     [_imageManager downloadImageWithURL:[NSURL URLWithString:imageUrlString] options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        
+
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-      
+
         [_nextDayIamgeView setAlpha:0.0f];
         [UIView transitionWithView:_nextDayIamgeView duration:animationDuration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             [_nextDayIamgeView setImage:image];
@@ -265,10 +309,12 @@
             });
         }];
     }];
+    
+    
 
     // event
     if (![NSString emptyOrNull:_nextDayModel.event]) {
-        [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:[OSDateUtil getCurrentDate] String:[OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE6] event:_nextDayModel.event]];
+        [self.dateLabel setText:[_nextDayViewModel getDateStringWithDate:self.inputDate String:self.inputDateStr event:_nextDayModel.event]];
     }
     
     // 地理位置 reverse
@@ -437,8 +483,7 @@
 
 - (void)getNextDayService
 {
-    self.userBean.dateString = [OSDateUtil getStringDate:[OSDateUtil getCurrentDate] formatType:SIMPLEFORMATTYPE14];
-
+    self.userBean.dateString = [OSDateUtil getStringDate:_inputDate formatType:SIMPLEFORMATTYPE14];
     OSNetwork *network = [[OSNetwork alloc] init];
 
     __weak typeof(self) weakSelf = self;
@@ -450,15 +495,15 @@
         [strongSelf setupFullInformation];
 
     } failedlock:^(NSURLSessionDataTask *task, NSError *error) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"服务器正在更新数据，请稍后再试。"];
-        [alertView addButtonWithTitle:@"确定"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alertView) {
-
-                              }];
-        alertView.enabledParallaxEffect = NO;
-        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-        [alertView show];
+//        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"提示" andMessage:@"服务器正在更新数据，请稍后再试。"];
+//        [alertView addButtonWithTitle:@"确定"
+//                                 type:SIAlertViewButtonTypeDefault
+//                              handler:^(SIAlertView *alertView) {
+//                                  
+//                              }];
+//        alertView.enabledParallaxEffect = NO;
+//        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+//        [alertView show];
     }];
 }
 
@@ -666,6 +711,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
