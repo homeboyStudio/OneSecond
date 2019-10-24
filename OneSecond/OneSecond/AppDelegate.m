@@ -22,6 +22,7 @@
 #import "WeiboSDK.h"
 #import "OSGuidingViewController.h"
 #import "OSNextDayViewController.h"
+#import "OSNextDayRootViewController.h"
 
 static NSString *DATABASE_NAME = @"OneSecond.db";
 
@@ -118,7 +119,7 @@ static NSString *DATABASE_NAME = @"OneSecond.db";
         }else if ([shortcutItem.type isEqualToString:@"com.homeboy.photo"]) {
             // 世界
             OSNavigationController *nav = nil;
-            nav = [[OSNavigationController alloc] initWithRootViewController:[[OSNextDayViewController alloc] init]];
+            nav = [[OSNavigationController alloc] initWithRootViewController:[[OSNextDayRootViewController alloc] init]];
             OSSideMenuController *sideMenuController = [[OSSideMenuController alloc] initWithRootViewController:nav];
             [sideMenuController setRightViewSwipeGestureEnabled:YES];
             self.window.rootViewController = sideMenuController;

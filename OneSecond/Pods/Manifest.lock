@@ -10,9 +10,17 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - SCRecorder
 
+SPEC REPOS:
+  trunk:
+    - FMDB
+    - MBProgressHUD
+    - SCRecorder
+
 SPEC CHECKSUMS:
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   SCRecorder: bbb521dbc222908876ec9cd9156bbc8a893bed44
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 66d97dc5afe075585d72be68d331ab559b5ef0ae
+
+COCOAPODS: 1.8.3

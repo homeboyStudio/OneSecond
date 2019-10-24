@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041234BD626C5E4E4B757222 /* libPods-OneSecond.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89628B762CE1636297E34B80 /* libPods-OneSecond.a */; };
 		3702122B1C1479E700D92DE6 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3702121F1C1479E700D92DE6 /* 1.jpg */; };
 		3702122C1C1479E700D92DE6 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 370212201C1479E700D92DE6 /* 2.jpg */; };
 		3702122D1C1479E700D92DE6 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 370212211C1479E700D92DE6 /* 3.jpg */; };
@@ -247,7 +248,6 @@
 		37FE0BBC1C17FC1000D88B5E /* leftside_btn_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37FE0BBA1C17FC1000D88B5E /* leftside_btn_setting@2x.png */; };
 		37FE0BBD1C17FC1000D88B5E /* leftside_btn_setting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37FE0BBB1C17FC1000D88B5E /* leftside_btn_setting@3x.png */; };
 		37FE0BC81C1885BC00D88B5E /* OSSettingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FE0BC71C1885BC00D88B5E /* OSSettingViewModel.m */; };
-		80B950328CE220B2CE33317F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A536E2E8900504BD75E3010 /* libPods.a */; };
 		AD01AE071BDB7A7C00B651C1 /* OSReplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD01AE051BDB7A7C00B651C1 /* OSReplayViewController.m */; };
 		AD01AE081BDB7A7C00B651C1 /* OSReplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD01AE061BDB7A7C00B651C1 /* OSReplayViewController.xib */; };
 		AD01AE0C1BDB7ABE00B651C1 /* OSRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD01AE0A1BDB7ABE00B651C1 /* OSRecordingViewController.m */; };
@@ -871,7 +871,7 @@
 		37FE0BBB1C17FC1000D88B5E /* leftside_btn_setting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_btn_setting@3x.png"; sourceTree = "<group>"; };
 		37FE0BC61C1885BC00D88B5E /* OSSettingViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSettingViewModel.h; sourceTree = "<group>"; };
 		37FE0BC71C1885BC00D88B5E /* OSSettingViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSSettingViewModel.m; sourceTree = "<group>"; };
-		5A536E2E8900504BD75E3010 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		89628B762CE1636297E34B80 /* libPods-OneSecond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSecond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD01AE041BDB7A7C00B651C1 /* OSReplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSReplayViewController.h; sourceTree = "<group>"; };
 		AD01AE051BDB7A7C00B651C1 /* OSReplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSReplayViewController.m; sourceTree = "<group>"; };
 		AD01AE061BDB7A7C00B651C1 /* OSReplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSReplayViewController.xib; sourceTree = "<group>"; };
@@ -955,10 +955,11 @@
 		ADFDE84D1BD937D100373948 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		ADFDE84F1BD937D900373948 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ADFDE85B1BDA863000373948 /* btn_video_flip_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_video_flip_camera@2x.png"; sourceTree = "<group>"; };
-		B9C7C72A2C7DA1C456012FBF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B16CBA20F72CB40015E701 /* OSNextDayRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSNextDayRootViewController.h; sourceTree = "<group>"; };
 		C7B16CBB20F72CB40015E701 /* OSNextDayRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSNextDayRootViewController.m; sourceTree = "<group>"; };
-		CFE3CC406DB2963DE16FA370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DC3CAC80D742E4355739CBB9 /* Pods-OneSecond.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSecond.release.xcconfig"; path = "Target Support Files/Pods-OneSecond/Pods-OneSecond.release.xcconfig"; sourceTree = "<group>"; };
+		E899E51E349FF9623F787D39 /* Pods-OneSecond.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSecond.adhoc.xcconfig"; path = "Target Support Files/Pods-OneSecond/Pods-OneSecond.adhoc.xcconfig"; sourceTree = "<group>"; };
+		E9EC4B343D5567AC4C46BD3A /* Pods-OneSecond.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSecond.debug.xcconfig"; path = "Target Support Files/Pods-OneSecond/Pods-OneSecond.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -986,7 +987,7 @@
 				379612E71BEC6BE1007AA588 /* QuartzCore.framework in Frameworks */,
 				ADFDE8501BD937D900373948 /* AssetsLibrary.framework in Frameworks */,
 				379614501BECB0FC007AA588 /* libGPUImage.a in Frameworks */,
-				80B950328CE220B2CE33317F /* libPods.a in Frameworks */,
+				041234BD626C5E4E4B757222 /* libPods-OneSecond.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,7 +1030,7 @@
 				379612E61BEC6BE1007AA588 /* QuartzCore.framework */,
 				ADFDE84F1BD937D900373948 /* AssetsLibrary.framework */,
 				ADFDE84D1BD937D100373948 /* AVFoundation.framework */,
-				5A536E2E8900504BD75E3010 /* libPods.a */,
+				89628B762CE1636297E34B80 /* libPods-OneSecond.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1975,6 +1976,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3FBA883C2441ADD3BA98B84C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9EC4B343D5567AC4C46BD3A /* Pods-OneSecond.debug.xcconfig */,
+				E899E51E349FF9623F787D39 /* Pods-OneSecond.adhoc.xcconfig */,
+				DC3CAC80D742E4355739CBB9 /* Pods-OneSecond.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AD01AE031BDB7A5A00B651C1 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
@@ -2347,6 +2359,7 @@
 				ADB2EEE91BCAAB1100F7452F /* OneSecondUITests */,
 				ADB2EEC31BCAAB1100F7452F /* Products */,
 				2199D791561151B01392D61F /* Frameworks */,
+				3FBA883C2441ADD3BA98B84C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2387,7 +2400,6 @@
 		ADB2EEDE1BCAAB1100F7452F /* OneSecondTests */ = {
 			isa = PBXGroup;
 			children = (
-				FF4813E56660C3B85CF226E0 /* Pods */,
 				ADB2EEDF1BCAAB1100F7452F /* OneSecondTests.m */,
 				ADB2EEE11BCAAB1100F7452F /* Info.plist */,
 			);
@@ -2436,16 +2448,6 @@
 			path = Recording;
 			sourceTree = "<group>";
 		};
-		FF4813E56660C3B85CF226E0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B9C7C72A2C7DA1C456012FBF /* Pods.debug.xcconfig */,
-				CFE3CC406DB2963DE16FA370 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			path = ..;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2453,12 +2455,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADB2EEEF1BCAAB1100F7452F /* Build configuration list for PBXNativeTarget "OneSecond" */;
 			buildPhases = (
-				F0BAA9EBC39C5E1D00A2CD09 /* Check Pods Manifest.lock */,
+				8EABEB04C0D54A0E417DACFF /* [CP] Check Pods Manifest.lock */,
 				ADB2EEBE1BCAAB1100F7452F /* Sources */,
 				ADB2EEBF1BCAAB1100F7452F /* Frameworks */,
 				ADB2EEC01BCAAB1100F7452F /* Resources */,
-				63F55A63A8C9F339C981FA77 /* Embed Pods Frameworks */,
-				1884FF90DFB6F30A63296267 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2534,6 +2534,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -2685,49 +2686,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1884FF90DFB6F30A63296267 /* Copy Pods Resources */ = {
+		8EABEB04C0D54A0E417DACFF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OneSecond-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63F55A63A8C9F339C981FA77 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0BAA9EBC39C5E1D00A2CD09 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2974,7 +2952,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "820654a1-e55e-4d4c-99e0-222f44ea3c70";
@@ -2984,7 +2962,7 @@
 		};
 		3751E4511C2943F000DCDA6D /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9C7C72A2C7DA1C456012FBF /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E899E51E349FF9623F787D39 /* Pods-OneSecond.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3002,7 +2980,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = OneSecond/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3094,7 +3072,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "820654a1-e55e-4d4c-99e0-222f44ea3c70";
@@ -3144,7 +3122,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "820654a1-e55e-4d4c-99e0-222f44ea3c70";
 				SDKROOT = iphoneos;
@@ -3154,7 +3132,7 @@
 		};
 		ADB2EEF01BCAAB1100F7452F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9C7C72A2C7DA1C456012FBF /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E9EC4B343D5567AC4C46BD3A /* Pods-OneSecond.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3172,7 +3150,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = OneSecond/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3191,7 +3169,7 @@
 		};
 		ADB2EEF11BCAAB1100F7452F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFE3CC406DB2963DE16FA370 /* Pods.release.xcconfig */;
+			baseConfigurationReference = DC3CAC80D742E4355739CBB9 /* Pods-OneSecond.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3209,7 +3187,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = OneSecond/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

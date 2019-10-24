@@ -30,8 +30,9 @@
 {
     self = [super init];
     if (self) {
-        self.imageHeaderUrl = @"http://nextday-pic.b0.upaiyun.com";
-        self.mediaHeaderUrl = @"http://nextday-file.b0.upaiyun.com";
+     //Wiki： https://github.com/sanddudu/nextday-desktop/wiki/API
+        self.imageHeaderUrl = @"https://upimg.nxmix.com/";
+        self.mediaHeaderUrl = @"https://upfile.nxmix.com/";
     }
     return self;
 }

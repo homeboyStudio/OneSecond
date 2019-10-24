@@ -3,7 +3,7 @@
 //  OneSecond
 //
 //  Created by JunhuaRao on 15/11/26.
-//  Copyright © 2015年 com.homeboy. All rights reserved.
+//  Copyright © 2016年 com.homeboy. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,10 +13,11 @@
 * 在 NextDay v4.5 之后，添加了 short 属性，即文字由双行被精简为单行。为了兼容既有的客户端，
 * comment1 和 comment2 也被保留。short 并不是 comment1 和 comment2 的简单叠加。
 * 由于历史原因，调用者不能假设每天的数据一定有 short 属性。随着时间的推移，我们希望最终仅仅需要维护 short 属性。
+* https://github.com/sanddudu/nextday-desktop/wiki/API  API变更
 *
-* {img}   应该被替换为：http://nextday-pic.b0.upaiyun.com/
-* {music} 应该被替换为：http://nextday-file.b0.upaiyun.com/
-* {video} 应该被替换为：http://nextday-file.b0.upaiyun.com/
+* {img}   应该被替换为：https://upimg.nxmix.com/
+* {music} 应该被替换为：https://upfile.nxmix.com/
+* {video} 应该被替换为：https://upfile.nxmix.com/
 */
 @interface TextModel : NSObject
 
