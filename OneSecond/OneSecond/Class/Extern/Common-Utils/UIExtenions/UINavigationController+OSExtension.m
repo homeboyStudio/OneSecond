@@ -2,8 +2,8 @@
 //  UINavigationController+OSExtension.m
 //  OneSecond
 //
-//  Created by JHR on 15/10/21.
-//  Copyright © 2015年 com.homeboy. All rights reserved.
+//  Created by JunhuaRao on 2020/07/01.
+//  Copyright © 2020年 com.homeboy. All rights reserved.
 //
 
 #import "UINavigationController+OSExtension.h"

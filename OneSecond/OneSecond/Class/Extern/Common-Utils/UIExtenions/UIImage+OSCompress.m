@@ -2,8 +2,8 @@
 //  UIImage+OSCompress.m
 //  OneSecond
 //
-//  Created by JunhuaRao on 15/10/30.
-//  Copyright © 2015年 com.homeboy. All rights reserved.
+//  Created by JunhuaRao on 2020/07/01.
+//  Copyright © 2020年 com.homeboy. All rights reserved.
 //
 
 #import "UIImage+OSCompress.h"

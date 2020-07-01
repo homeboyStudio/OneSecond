@@ -2,7 +2,7 @@
 //  OSVideoClipViewController.h
 //  OneSecond
 //
-//  Created by JunhuaRao on 16/1/28.
+//  Created by JunhuaRao on 2020/07/01.
 //  Copyright © 2016年 com.homeboy. All rights reserved.
 //
 
