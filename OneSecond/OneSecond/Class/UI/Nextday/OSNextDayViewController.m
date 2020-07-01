@@ -177,8 +177,8 @@
     _isShowOnWindow = NO;
     AVPlayerItem *playerItem = [OSNextDayViewModel getPlayItemWithVideoUrlString:@""];
     _player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
     // 判断是否为4s,更改屏幕尺寸
     
@@ -293,16 +293,16 @@
 
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
 
-        [_nextDayIamgeView setAlpha:0.0f];
-        [UIView transitionWithView:_nextDayIamgeView duration:animationDuration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-            [_nextDayIamgeView setImage:image];
-            [_nextDayIamgeView setAlpha:1.0f];
+        [self.nextDayIamgeView setAlpha:0.0f];
+        [UIView transitionWithView:self.nextDayIamgeView duration:animationDuration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            [self.nextDayIamgeView setImage:image];
+            [self.nextDayIamgeView setAlpha:1.0f];
         } completion:^(BOOL finished) {
            // 下载完成图片后可以保存图片到相册之中  置为可以保存图像
             // 异步截取图片
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    _cutViewImage = [self imageWithView:self.view];
+                    self.cutViewImage = [self imageWithView:self.view];
                 // 可交互状态
                     [self.frontBgView setUserInteractionEnabled:YES];
                 });
@@ -483,7 +483,12 @@
 
 - (void)getNextDayService
 {
-    self.userBean.dateString = [OSDateUtil getStringDate:_inputDate formatType:SIMPLEFORMATTYPE14];
+    NSString *date = [OSDateUtil getStringDate:_inputDate formatType:SIMPLEFORMATTYPE14];
+    if ([date isEqualToString:@"2019/11/10"]) {
+        // 有视频推送的日历
+        date = @"2016/04/28";
+    }
+    self.userBean.dateString = date;
     OSNetwork *network = [[OSNetwork alloc] init];
 
     __weak typeof(self) weakSelf = self;
@@ -515,7 +520,7 @@
         [alertView addButtonWithTitle:@"继续"
                                  type:SIAlertViewButtonTypeDefault
                               handler:^(SIAlertView *alertView) {
-                                  _isCellularPlay = YES;
+                                  self.isCellularPlay = YES;
                                   [self.progressView setHidden:NO];
                                   self.isProgressViewHidden = NO;
                                   [self.musicPlayer play:sender andProgressView:self.progressView];
@@ -687,7 +692,7 @@
             self.videoImageViewBottomLayout.constant = 0;
             
             if ([OSDevice isDeviceIPhone4s]) {
-                [_playerLayer setFrame:CGRectMake(-50, -70, DEVICE_WIDTH + 50, DEVICE_HEIGHT + 178)];
+                [self.playerLayer setFrame:CGRectMake(-50, -70, DEVICE_WIDTH + 50, DEVICE_HEIGHT + 178)];
             }else {
                 [self.playerLayer setFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT)];
             }

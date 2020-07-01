@@ -248,6 +248,7 @@
 		37FE0BBC1C17FC1000D88B5E /* leftside_btn_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37FE0BBA1C17FC1000D88B5E /* leftside_btn_setting@2x.png */; };
 		37FE0BBD1C17FC1000D88B5E /* leftside_btn_setting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37FE0BBB1C17FC1000D88B5E /* leftside_btn_setting@3x.png */; };
 		37FE0BC81C1885BC00D88B5E /* OSSettingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FE0BC71C1885BC00D88B5E /* OSSettingViewModel.m */; };
+		97D9393123A38A47004F8B9B /* FMDatabaseQueue+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D9393023A38A47004F8B9B /* FMDatabaseQueue+Async.m */; };
 		AD01AE071BDB7A7C00B651C1 /* OSReplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD01AE051BDB7A7C00B651C1 /* OSReplayViewController.m */; };
 		AD01AE081BDB7A7C00B651C1 /* OSReplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD01AE061BDB7A7C00B651C1 /* OSReplayViewController.xib */; };
 		AD01AE0C1BDB7ABE00B651C1 /* OSRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD01AE0A1BDB7ABE00B651C1 /* OSRecordingViewController.m */; };
@@ -872,6 +873,8 @@
 		37FE0BC61C1885BC00D88B5E /* OSSettingViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSettingViewModel.h; sourceTree = "<group>"; };
 		37FE0BC71C1885BC00D88B5E /* OSSettingViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSSettingViewModel.m; sourceTree = "<group>"; };
 		89628B762CE1636297E34B80 /* libPods-OneSecond.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSecond.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97D9392F23A38A46004F8B9B /* FMDatabaseQueue+Async.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDatabaseQueue+Async.h"; sourceTree = "<group>"; };
+		97D9393023A38A47004F8B9B /* FMDatabaseQueue+Async.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FMDatabaseQueue+Async.m"; sourceTree = "<group>"; };
 		AD01AE041BDB7A7C00B651C1 /* OSReplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSReplayViewController.h; sourceTree = "<group>"; };
 		AD01AE051BDB7A7C00B651C1 /* OSReplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSReplayViewController.m; sourceTree = "<group>"; };
 		AD01AE061BDB7A7C00B651C1 /* OSReplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSReplayViewController.xib; sourceTree = "<group>"; };
@@ -1818,6 +1821,8 @@
 				37CCB9011C21464700A9DF38 /* OSGuidingViewController.xib */,
 				37CCB9041C214A9D00A9DF38 /* ViewModel */,
 				37CCB90B1C21597600A9DF38 /* Views */,
+				97D9392F23A38A46004F8B9B /* FMDatabaseQueue+Async.h */,
+				97D9393023A38A47004F8B9B /* FMDatabaseQueue+Async.m */,
 			);
 			path = Guiding;
 			sourceTree = "<group>";
@@ -1983,7 +1988,6 @@
 				E899E51E349FF9623F787D39 /* Pods-OneSecond.adhoc.xcconfig */,
 				DC3CAC80D742E4355739CBB9 /* Pods-OneSecond.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -2751,6 +2755,7 @@
 				AD3D37CC1BD2417200FEFA08 /* OSLeftSideViewController.m in Sources */,
 				3719DC341BE75864002854D0 /* JTVerticalCalendarView.m in Sources */,
 				3719DBFF1BE73722002854D0 /* OSCalendarCellsModel.m in Sources */,
+				97D9393123A38A47004F8B9B /* FMDatabaseQueue+Async.m in Sources */,
 				3727FBCA1C205B8E002B94C0 /* WeixinSessionActivity.m in Sources */,
 				3719DC2D1BE75864002854D0 /* JTCalendarScrollManager.m in Sources */,
 				372B72BC1BFC7A10005EC423 /* OSMovieClipViewController.m in Sources */,

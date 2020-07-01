@@ -50,11 +50,11 @@
 {
     if (!self.isShowed) {
         [UIView animateWithDuration:.5f animations:^{
-            [_titleLabel setAlpha:1.0f];
+            [self.titleLabel setAlpha:1.0f];
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:.5f animations:^{
-                [_detailTextView setAlpha:1.0];
+                [self.detailTextView setAlpha:1.0];
             } completion:^(BOOL finished) {
                 self.isShowed = YES;
             }];
